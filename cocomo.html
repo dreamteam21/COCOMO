@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>COCOMO Calculator</title>
+    </header>
+    <style>
+        .content {
+          max-width: 800px;
+          margin: auto;
+          text-align: center;
+        }
+        .desc {
+            position: absolute;
+            max-width: 600px;
+            left: auto;
+            right: auto;
+            margin-left: 80px;
+            margin-right: 80px;
+            text-align: left;
+        }
+        table {
+            text-align: center;
+            margin: auto;
+            width: 80%;
+            border-collapse: collapse;
+        }
+        td {
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+    </style>
+    <body>
+        <div class="content">
+            <h1>COCOMO Calculator</h1>
+            <p>Enter your estimated Line of Codes in Kilo (KLOC): <input id="numInput" type="number" style="width: 70px;"></input></p>
+            <button onclick="calc()">Calculate</button>
+            <p>
+                <b>Effort Applied (E)</b> = a<sub>b</sub> &times; KLOC<sup>b<sub>b</sub></sup><br>
+                <b>Developement Time (D)</b> = c<sub>b</sub> &times; Effort<sup>d<sub>b</sub></sup><br>
+                <b>People required (P)</b> = Effort &divide; Developement
+            </p>
+            <table>
+                <tr>
+                    <td></td>
+                    <td><b>Organic</b></td>
+                    <td><b>Semi-detached</b></td>
+                    <td><b>Embedded</b></td>
+                </tr>
+                <tr>
+                    <td>Variable a<sub>b</sub></td>
+                    <td>2.4</td>
+                    <td>3.0</td>
+                    <td>3.6</td>
+                </tr>
+                <tr>
+                    <td>Variable b<sub>b</sub></td>
+                    <td>1.05</td>
+                    <td>1.12</td>
+                    <td>1.20</td>
+                </tr>
+                <tr>
+                    <td>Variable c<sub>b</sub></td>
+                    <td>2.5</td>
+                    <td>2.5</td>
+                    <td>2.5</td>
+                </tr>
+                <tr>
+                    <td>Variable d<sub>b</sub></td>
+                    <td>0.38</td>
+                    <td>0.35</td>
+                    <td>0.32</td>
+                </tr>
+                <tr>
+                    <td>KLOC</td>
+                    <td id="klocOrg"></td>
+                    <td id="klocSemi"></td>
+                    <td id="klocEm"></td>
+                </tr>
+                <tr>
+                    <td>Effort applied (person/month)</td>
+                    <td id="eOrg"></td>
+                    <td id="eSemi"></td>
+                    <td id="eEm"></td>
+                </tr>
+                <tr>
+                    <td>Developement Time (month)</td>
+                    <td id="dOrg"></td>
+                    <td id="dSemi"></td>
+                    <td id="dEm"></td>
+                </tr>
+                <tr>
+                    <td>Person required (person)</td>
+                    <td id="pOrg"></td>
+                    <td id="pSemi"></td>
+                    <td id="pEm"></td>
+                </tr>
+            </table>
+            <div class="desc">
+                <br>
+                <b>Description:</b><br>
+                <i>Organic </i>is relatively small, simple software projects in which small teams with good application experience work to a set of less than rigid requirements.<br>
+                <i>Semi-detached </i>is an intermediate, (in size and complexity), a software project in which teams with mixed experience levels must meet a mix of rigid and less than rigid requirements.<br>
+                <i>Embedded </i>is a software project that must be developed within a set of tight hardware, software and operation constraints.
+            </div>
+        </div>
+    </body>
+    <script>
+        function calc(){
+            var num = document.getElementById("numInput").value;
+            if(num != ""){
+                //KLOC
+                document.getElementById("klocOrg").innerHTML = num;
+                document.getElementById("klocSemi").innerHTML = num;
+                document.getElementById("klocEm").innerHTML = num;
+                //Effort
+                var effortOrg = 2.4 * Math.pow(num, 1.05);
+                document.getElementById("eOrg").innerHTML = effortOrg.toFixed(2);
+                var effortSemi = 3 * Math.pow(num, 1.12);
+                document.getElementById("eSemi").innerHTML = effortSemi.toFixed(2);
+                var effortEm = 3.6 * Math.pow(num, 1.2);
+                document.getElementById("eEm").innerHTML = effortEm.toFixed(2);
+                //DevTime
+                var devOrg = 2.5 * Math.pow(effortOrg, 0.38);
+                document.getElementById("dOrg").innerHTML = devOrg.toFixed(2);
+                var devSemi = 2.5 * Math.pow(effortSemi, 0.35);
+                document.getElementById("dSemi").innerHTML = devSemi.toFixed(2);
+                var devEm = 2.5 * Math.pow(effortEm, 0.32);
+                document.getElementById("dEm").innerHTML = devEm.toFixed(2);
+                //People
+                var personOrg = effortOrg / devOrg;
+                document.getElementById("pOrg").innerText = personOrg.toFixed(2);
+                var personSemi = effortSemi / devSemi;
+                document.getElementById("pSemi").innerText = personSemi.toFixed(2);
+                var personEm = effortEm / devEm;
+                document.getElementById("pEm").innerText = personEm.toFixed(2);
+            }
+            else{
+                document.getElementById("klocOrg").innerHTML = "n/a";
+                document.getElementById("klocSemi").innerHTML = "n/a";
+                document.getElementById("klocEm").innerHTML = "n/a";
+                document.getElementById("eOrg").innerHTML = "n/a";
+                document.getElementById("eSemi").innerHTML = "n/a";
+                document.getElementById("eEm").innerHTML = "n/a";
+                document.getElementById("dOrg").innerHTML = "n/a";
+                document.getElementById("dSemi").innerHTML = "n/a";
+                document.getElementById("dEm").innerHTML = "n/a";
+                document.getElementById("pOrg").innerHTML = "n/a";
+                document.getElementById("pSemi").innerHTML = "n/a";
+                document.getElementById("pEm").innerHTML = "n/a";
+            }
+        }
+    </script>
+</html>
