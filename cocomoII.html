@@ -3,4 +3,347 @@
     <header>
         <title>COCOMO-II Calculator</title>
     </header>
+    <style>
+        .content {
+          max-width: 800px;
+          margin: auto;
+          text-align: center;
+        }
+        .desc {
+            position: absolute;
+            max-width: 600px;
+            left: auto;
+            right: auto;
+            margin-left: 80px;
+            margin-right: 80px;
+            text-align: left;
+        }
+        table {
+            text-align: center;
+            margin: auto;
+            width: 80%;
+            border-collapse: collapse;
+        }
+        td {
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .tdclass{
+            width: 50px;
+        }
+        #tdempty{
+            background-color: lightslategray;
+        }
+        .tdbigtitle{
+            font-weight: bold;
+        }
+        .tdtitle{
+            text-align: left;
+        }
+    </style>
+    <body>
+        <div class="content">
+            <h1>COCOMO-II Calculator</h1>
+            <p>Enter your estimated Line of Codes in Kilo (KLOC): <input id="numInput" type="number" style="width: 70px;"></input></p>
+            <table>
+                <tr>
+                    <td rowspan="2">Cost drivers</td>
+                    <td colspan="6" class="tdbigtitle">Ratings</td>
+                </tr>
+                <tr>
+                    <td class="tdclass">VL</td>
+                    <td class="tdclass">L</td>
+                    <td class="tdclass">N</td>
+                    <td class="tdclass">H</td>
+                    <td class="tdclass">VH</td>
+                    <td class="tdclass">EH</td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Product attributes</td>
+                    <td id="tdempty" colspan="6"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Required software reliability</td>
+                    <td class="tdclass"><input type="radio" id="1_VL" name="1" value="0.75"></td>
+                    <td class="tdclass"><input type="radio" id="1_L" name="1" value="0.88"></td>
+                    <td class="tdclass"><input type="radio" id="1_N" name="1" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="1_H" name="1" value="1.15"></td>
+                    <td class="tdclass"><input type="radio" id="1_VH" name="1" value="1.40"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Size of application database</td>
+                    <td class="tdclass" id="tdempty"></td>
+                    <td class="tdclass"><input type="radio" id="2_L" name="2" value="0.94"></td>
+                    <td class="tdclass"><input type="radio" id="2_N" name="2" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="2_H" name="2" value="1.08"></td>
+                    <td class="tdclass"><input type="radio" id="2_VH" name="2" value="1.16"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Complexity of the product</td>
+                    <td class="tdclass"><input type="radio" id="3_VL" name="3" value="0.7"></td>
+                    <td class="tdclass"><input type="radio" id="3_L" name="3" value="0.85"></td>
+                    <td class="tdclass"><input type="radio" id="3_N" name="3" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="3_H" name="3" value="1.15"></td>
+                    <td class="tdclass"><input type="radio" id="3_VH" name="3" value="1.30"></td>
+                    <td class="tdclass"><input type="radio" id="3_VH" name="3" value="1.65"></td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Hardware attributes</td>
+                    <td id="tdempty" colspan="6"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Run-time performance constraints</td>
+                    <td class="tdclass" id="tdempty" colspan="2"></td>
+                    <td class="tdclass"><input type="radio" id="4_N" name="4" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="4_H" name="4" value="1.11"></td>
+                    <td class="tdclass"><input type="radio" id="4_VH" name="4" value="1.30"></td>
+                    <td class="tdclass"><input type="radio" id="4_VH" name="4" value="1.66"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Memory constraints</td>
+                    <td class="tdclass" id="tdempty" colspan="2"></td>
+                    <td class="tdclass"><input type="radio" id="5_N" name="5" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="5_H" name="5" value="1.06"></td>
+                    <td class="tdclass"><input type="radio" id="5_VH" name="5" value="1.21"></td>
+                    <td class="tdclass"><input type="radio" id="5_VH" name="5" value="1.56"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Volatility of the virtual machine environment</td>
+                    <td class="tdclass" id="tdempty"></td>
+                    <td class="tdclass"><input type="radio" id="6_L" name="6" value="0.87"></td>
+                    <td class="tdclass"><input type="radio" id="6_N" name="6" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="6_H" name="6" value="1.15"></td>
+                    <td class="tdclass"><input type="radio" id="6_VH" name="6" value="1.30"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Required turnabout time</td>
+                    <td class="tdclass" id="tdempty"></td>
+                    <td class="tdclass"><input type="radio" id="7_L" name="7" value="0.87"></td>
+                    <td class="tdclass"><input type="radio" id="7_N" name="7" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="7_H" name="7" value="1.07"></td>
+                    <td class="tdclass"><input type="radio" id="7_VH" name="7" value="1.15"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Personnel attributes</td>
+                    <td id="tdempty" colspan="6"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Analyst capability</td>
+                    <td class="tdclass"><input type="radio" id="8_VL" name="8" value="1.46"></td>
+                    <td class="tdclass"><input type="radio" id="8_L" name="8" value="1.19"></td>
+                    <td class="tdclass"><input type="radio" id="8_N" name="8" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="8_H" name="8" value="0.86"></td>
+                    <td class="tdclass"><input type="radio" id="8_VH" name="8" value="0.71"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Applications experience</td>
+                    <td class="tdclass"><input type="radio" id="9_VL" name="9" value="1.29"></td>
+                    <td class="tdclass"><input type="radio" id="9_L" name="9" value="1.13"></td>
+                    <td class="tdclass"><input type="radio" id="9_N" name="9" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="9_H" name="9" value="0.91"></td>
+                    <td class="tdclass"><input type="radio" id="9_VH" name="9" value="0.82"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Software engineer capability</td>
+                    <td class="tdclass"><input type="radio" id="10_VL" name="10" value="1.42"></td>
+                    <td class="tdclass"><input type="radio" id="10_L" name="10" value="1.17"></td>
+                    <td class="tdclass"><input type="radio" id="10_N" name="10" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="10_H" name="10" value="0.86"></td>
+                    <td class="tdclass"><input type="radio" id="10_VH" name="10" value="0.7"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Virtual machine experience</td>
+                    <td class="tdclass"><input type="radio" id="11_VL" name="11" value="1.21"></td>
+                    <td class="tdclass"><input type="radio" id="11_L" name="11" value="1.1"></td>
+                    <td class="tdclass"><input type="radio" id="11_N" name="11" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="11_H" name="11" value="0.9"></td>
+                    <td class="tdclass" id="tdempty" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Programming language experience</td>
+                    <td class="tdclass"><input type="radio" id="12_VL" name="12" value="1.14"></td>
+                    <td class="tdclass"><input type="radio" id="12_L" name="12" value="1.07"></td>
+                    <td class="tdclass"><input type="radio" id="12_N" name="12" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="12_H" name="12" value="0.95"></td>
+                    <td class="tdclass" id="tdempty" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Project attributes</td>
+                    <td id="tdempty" colspan="6"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Application of software engineering methods</td>
+                    <td class="tdclass"><input type="radio" id="13_VL" name="13" value="1.24"></td>
+                    <td class="tdclass"><input type="radio" id="13_L" name="13" value="1.1"></td>
+                    <td class="tdclass"><input type="radio" id="13_N" name="13" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="13_H" name="13" value="0.91"></td>
+                    <td class="tdclass"><input type="radio" id="13_VH" name="13" value="0.82"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Use of software tools</td>
+                    <td class="tdclass"><input type="radio" id="14_VL" name="14" value="1.24"></td>
+                    <td class="tdclass"><input type="radio" id="14_L" name="14" value="1.1"></td>
+                    <td class="tdclass"><input type="radio" id="14_N" name="14" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="14_H" name="14" value="0.91"></td>
+                    <td class="tdclass"><input type="radio" id="14_VH" name="14" value="0.83"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Required development schedule</td>
+                    <td class="tdclass"><input type="radio" id="15_VL" name="15" value="1.23"></td>
+                    <td class="tdclass"><input type="radio" id="15_L" name="15" value="1.08"></td>
+                    <td class="tdclass"><input type="radio" id="15_N" name="15" value="1" checked></td>
+                    <td class="tdclass"><input type="radio" id="15_H" name="15" value="1.04"></td>
+                    <td class="tdclass"><input type="radio" id="15_VH" name="15" value="1.1"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Effort Adjustment Factor (EAF)</td>
+                    <td id="eaf" colspan="6">1.00</td>
+                </tr>
+            </table>
+            <div class="desc">
+                <i>VL </i> is very low, <i>L </i> is low, <i>N </i> is nominal, <i>H </i> is high, <i>VH </i> is very high, <i>EH </i> is extra high.
+            </div>
+            <br><br>
+            <button onclick="calc()">Calculate</button>
+            <p>
+                <b>Effort Applied (E)</b> = a<sub>b</sub> &times; KLOC<sup>b<sub>b</sub></sup> &times; EAF<br>
+                <b>Developement Time (D)</b> = c<sub>b</sub> &times; Effort<sup>d<sub>b</sub></sup><br>
+                <b>People required (P)</b> = Effort &divide; Developement
+            </p>
+            <table>
+                <tr>
+                    <td></td>
+                    <td><b>Organic</b></td>
+                    <td><b>Semi-detached</b></td>
+                    <td><b>Embedded</b></td>
+                </tr>
+                <tr>
+                    <td>Variable a<sub>b</sub></td>
+                    <td>3.2</td>
+                    <td>3.0</td>
+                    <td>2.8</td>
+                </tr>
+                <tr>
+                    <td>Variable b<sub>b</sub></td>
+                    <td>1.05</td>
+                    <td>1.12</td>
+                    <td>1.20</td>
+                </tr>
+                <tr>
+                    <td>Variable c<sub>b</sub></td>
+                    <td>2.5</td>
+                    <td>2.5</td>
+                    <td>2.5</td>
+                </tr>
+                <tr>
+                    <td>Variable d<sub>b</sub></td>
+                    <td>0.38</td>
+                    <td>0.35</td>
+                    <td>0.32</td>
+                </tr>
+                <tr>
+                    <td>KLOC</td>
+                    <td id="klocOrg"></td>
+                    <td id="klocSemi"></td>
+                    <td id="klocEm"></td>
+                </tr>
+                <tr>
+                    <td>Effort applied (person/month)</td>
+                    <td id="eOrg"></td>
+                    <td id="eSemi"></td>
+                    <td id="eEm"></td>
+                </tr>
+                <tr>
+                    <td>Developement Time (month)</td>
+                    <td id="dOrg"></td>
+                    <td id="dSemi"></td>
+                    <td id="dEm"></td>
+                </tr>
+                <tr>
+                    <td>Person required (person)</td>
+                    <td id="pOrg"></td>
+                    <td id="pSemi"></td>
+                    <td id="pEm"></td>
+                </tr>
+            </table>
+            <div class="desc">
+                <br>
+                <b>Description:</b><br>
+                &emsp;<i>Organic </i>is relatively small, simple software projects in which small teams with good application experience work to a set of less than rigid requirements.<br>
+                &emsp;<i>Semi-detached </i>is an intermediate, (in size and complexity), a software project in which teams with mixed experience levels must meet a mix of rigid and less than rigid requirements.<br>
+                &emsp;<i>Embedded </i>is a software project that must be developed within a set of tight hardware, software and operation constraints.
+            </div>
+        </div>
+    </body>
+    <script>
+        function calc(){
+            var num = document.getElementById("numInput").value;
+            //EAF
+            var x = 1;
+            var EAF = 1;
+            do{
+                var list = document.getElementsByName(x);
+                for(var i = 0; i < list.length; i++){
+                    if(list[i].checked){
+                        EAF = EAF  * list[i].value;
+                    }
+                }
+                x++;
+            }while(x <= 15)
+            document.getElementById("eaf").innerHTML = EAF.toFixed(2)
+            if(num != ""){
+                //KLOC
+                document.getElementById("klocOrg").innerHTML = num;
+                document.getElementById("klocSemi").innerHTML = num;
+                document.getElementById("klocEm").innerHTML = num;
+                //Effort
+                var effortOrg = 3.2 * Math.pow(num, 1.05) * EAF;
+                document.getElementById("eOrg").innerHTML = effortOrg.toFixed(2);
+                var effortSemi = 3 * Math.pow(num, 1.12) * EAF;
+                document.getElementById("eSemi").innerHTML = effortSemi.toFixed(2);
+                var effortEm = 2.8 * Math.pow(num, 1.2) * EAF;
+                document.getElementById("eEm").innerHTML = effortEm.toFixed(2);
+                //DevTime
+                var devOrg = 2.5 * Math.pow(effortOrg, 0.38);
+                document.getElementById("dOrg").innerHTML = devOrg.toFixed(2);
+                var devSemi = 2.5 * Math.pow(effortSemi, 0.35);
+                document.getElementById("dSemi").innerHTML = devSemi.toFixed(2);
+                var devEm = 2.5 * Math.pow(effortEm, 0.32);
+                document.getElementById("dEm").innerHTML = devEm.toFixed(2);
+                //People
+                var personOrg = effortOrg / devOrg;
+                document.getElementById("pOrg").innerText = personOrg.toFixed(2);
+                var personSemi = effortSemi / devSemi;
+                document.getElementById("pSemi").innerText = personSemi.toFixed(2);
+                var personEm = effortEm / devEm;
+                document.getElementById("pEm").innerText = personEm.toFixed(2);
+            }
+            else{
+                document.getElementById("klocOrg").innerHTML = "n/a";
+                document.getElementById("klocSemi").innerHTML = "n/a";
+                document.getElementById("klocEm").innerHTML = "n/a";
+                document.getElementById("eOrg").innerHTML = "n/a";
+                document.getElementById("eSemi").innerHTML = "n/a";
+                document.getElementById("eEm").innerHTML = "n/a";
+                document.getElementById("dOrg").innerHTML = "n/a";
+                document.getElementById("dSemi").innerHTML = "n/a";
+                document.getElementById("dEm").innerHTML = "n/a";
+                document.getElementById("pOrg").innerHTML = "n/a";
+                document.getElementById("pSemi").innerHTML = "n/a";
+                document.getElementById("pEm").innerHTML = "n/a";
+            }
+        }
+    </script>
 </html>
