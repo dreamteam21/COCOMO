@@ -3,4 +3,674 @@
     <header>
         <title>COQUALMO Calculator</title>
     </header>
-</html>
+    <style>
+        .content {
+          max-width: 800px;
+          margin: auto;
+          text-align: center;
+        }
+        .desc {
+            position: absolute;
+            max-width: 600px;
+            left: auto;
+            right: auto;
+            margin-left: 80px;
+            margin-right: 80px;
+            text-align: left;
+        }
+        table {
+            text-align: center;
+            margin: auto;
+            width: 80%;
+            border-collapse: collapse;
+        }
+        td {
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        .tdclass{
+            width: 50px;
+        }
+        #tdempty{
+            background-color: lightslategray;
+        }
+        .tdbigtitle{
+            font-weight: bold;
+        }
+        .tdtitle{
+            text-align: left;
+        }
+    </style>
+    <body>
+        <div class="content">
+            <h1>COQUALMO Calculator</h1>
+            <h2>22 Software defect drivers</h2>
+            <p>Enter your estimated Line of Codes in Kilo (KLOC): <input id="numInput" type="number" style="width: 70px;"></input></p>
+            
+            <table>
+                <tr>
+                    <td rowspan="2">Cost drivers</td>
+                    <td colspan="6" class="tdbigtitle">Ratings</td>
+                </tr>
+                <tr>
+                    <td class="tdclass">VL</td>
+                    <td class="tdclass">L</td>
+                    <td class="tdclass">N</td>
+                    <td class="tdclass">H</td>
+                    <td class="tdclass">VH</td>
+                    <td class="tdclass">EH</td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Platform attributes</td>
+                    <td id="tdempty" colspan="6"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Required software reliability (RELY)</td>
+                    <td class="tdclass"><input type="radio" id="1_VL" name="1" value="1.43,1,1,1"></td>
+                    <td class="tdclass"><input type="radio" id="1_L" name="1" value="1.2,1.2,1.2,1"></td>
+                    <td class="tdclass"><input type="radio" id="1_N" name="1" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="1_H" name="1" value="0.84,0.83,0.83,0.91"></td>
+                    <td class="tdclass"><input type="radio" id="1_VH" name="1" value="0.70,0.69,0.69,0.82"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Database size (DATA)</td>
+                    <td class="tdclass"><input type="radio" id="2_VL" name="2" value="1.43,1.45,1.45,1.22"></td>
+                    <td class="tdclass"><input type="radio" id="2_L" name="2" value="1.2,1.2,1.2,1.1"></td>
+                    <td class="tdclass"><input type="radio" id="2_N" name="2" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="2_H" name="2" value="0.84,0.83,0.83,0.91"></td>
+                    <td class="tdclass"><input type="radio" id="2_VH" name="2" value="0.70,0.69,0.69,0.82"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Required Reusability (RUSE)</td>
+                    <td class="tdclass" id="tdempty"></td>
+                    <td class="tdclass"><input type="radio" id="3_L" name="3" value="0.95,0.98,0.98,0.96"></td>
+                    <td class="tdclass"><input type="radio" id="3_N" name="3" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="3_H" name="3" value="1.02,1,1,1.02"></td>
+                    <td class="tdclass"><input type="radio" id="3_VH" name="3" value="1.02,1.02,1,1.04"></td>
+                    <td class="tdclass"><input type="radio" id="3_EH" name="3" value="1.05,1.02,1.02,1.04"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Documentation Match to Life-Cycle Needs (DOCU)</td>
+                    <td class="tdclass"><input type="radio" id="4_VL" name="4" value="1.16,1.18,1.18,0.88"></td>
+                    <td class="tdclass"><input type="radio" id="4_L" name="4" value="1.08,1.09,1.09,0.94"></td>
+                    <td class="tdclass"><input type="radio" id="4_N" name="4" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="4_H" name="4" value="0.93,0.92,0.92,1.07"></td>
+                    <td class="tdclass"><input type="radio" id="4_VH" name="4" value="0.86,0.85,0.85,1.14"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Product Complexity (CPLX)</td>
+                    <td class="tdclass"><input type="radio" id="5_VL" name="5" value="0.76,0.71,0.71,0.86"></td>
+                    <td class="tdclass"><input type="radio" id="5_L" name="5" value="0.87,0.84,0.84,0.93"></td>
+                    <td class="tdclass"><input type="radio" id="5_N" name="5" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="5_H" name="5" value="1.10,1.12,1.12,1.05"></td>
+                    <td class="tdclass"><input type="radio" id="5_VH" name="5" value="1.15,1.19,1.19,1.08"></td>
+                    <td class="tdclass"><input type="radio" id="5_EH" name="5" value="1.32,1.41,1.41,1.16"></td>
+                    
+                </tr>
+                <tr>
+                    <td class="tdtitle">Execution Time Constraint (TIME)</td>
+                    <td class="tdclass" id="tdempty" colspan="2"></td>
+                    <td class="tdclass"><input type="radio" id="6_N" name="6" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="6_H" name="6" value="1.03,1.06,1.06,1"></td>
+                    <td class="tdclass"><input type="radio" id="6_VH" name="6" value="1.04,1.10,1.10,1"></td>
+                    <td class="tdclass"><input type="radio" id="6_EH" name="6" value="1.08,1.2,1.2,1"></td>
+                    
+                </tr>
+                <tr>
+                    <td class="tdtitle">Main Storage Constraint (STOR)</td>
+                    <td class="tdclass" id="tdempty" colspan="2"></td>
+                    <td class="tdclass"><input type="radio" id="7_N" name="7" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="7_H" name="7" value="1.03,1.06,1.05,1"></td>
+                    <td class="tdclass"><input type="radio" id="7_VH" name="7" value="1.04,1.09,1.07,1"></td>
+                    <td class="tdclass"><input type="radio" id="7_EH" name="7" value="1.08,1.18,1.15,1"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Platform Volatility (PVOL)</td>
+                    <td class="tdclass" id="tdempty"></td>
+                    <td class="tdclass"><input type="radio" id="8_L" name="8" value="0.86,0.83,0.82,0.89"></td>
+                    <td class="tdclass"><input type="radio" id="8_N" name="8" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="8_H" name="8" value="1.08,1.11,1.10,1.06"></td>
+                    <td class="tdclass"><input type="radio" id="8_VH" name="8" value="1.16,1.20,1.22,1.12"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+
+
+                <tr>
+                    <td class="tdbigtitle">Personnel attributes</td>
+                    <td id="tdempty" colspan="6"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Analyst Capability (ACAP)</td>
+                    <td class="tdclass"><input type="radio" id="9_VL" name="9" value="1.33,1.20,1.11,1.20"></td>
+                    <td class="tdclass"><input type="radio" id="9_L" name="9" value="1.15,1.10,1.05,1.10"></td>
+                    <td class="tdclass"><input type="radio" id="9_N" name="9" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="9_H" name="9" value="0.87,0.91,0.95,0.91"></td>
+                    <td class="tdclass"><input type="radio" id="9_VH" name="9" value="0.75,0.83,0.90,0.83"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Programmer Capability (PCAP)</td>
+                    <td class="tdclass"><input type="radio" id="10_VL" name="10" value="1,1.17,1.32,1.14"></td>
+                    <td class="tdclass"><input type="radio" id="10_L" name="10" value="1,1.08,1.15,1.07"></td>
+                    <td class="tdclass"><input type="radio" id="10_N" name="10" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="10_H" name="10" value="1,0.92,0.87,0.94"></td>
+                    <td class="tdclass"><input type="radio" id="10_VH" name="10" value="1,0.85,0.76,0.88"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Applications Experience (AEXP)</td>
+                    <td class="tdclass"><input type="radio" id="11_VL" name="11" value="1.24,1.22,1.13,1.22"></td>
+                    <td class="tdclass"><input type="radio" id="11_L" name="11" value="1.11,1.1,1.06,1.1"></td>
+                    <td class="tdclass"><input type="radio" id="11_N" name="11" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="11_H" name="11" value="0.90,0.91,0.94,0.91"></td>
+                    <td class="tdclass"><input type="radio" id="11_VH" name="11" value="0.81,0.82,0.88,0.82"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Platform Experience (PEXP)</td>
+                    <td class="tdclass"><input type="radio" id="12_VL" name="12" value="1.11,1.17,1.16,1.08"></td>
+                    <td class="tdclass"><input type="radio" id="12_L" name="12" value="1.05,1.08,1.08,1.04"></td>
+                    <td class="tdclass"><input type="radio" id="12_N" name="12" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="12_H" name="12" value="0.95,0.93,0.93,0.96"></td>
+                    <td class="tdclass"><input type="radio" id="12_VH" name="12" value="0.90,0.86,0.86,0.92"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Language and Tool Experience (LTEX)</td>
+                    <td class="tdclass"><input type="radio" id="13_VL" name="13" value="1.07,1.13,1.22,1.09"></td>
+                    <td class="tdclass"><input type="radio" id="13_L" name="13" value="1.03,1.06,1.10,1.04"></td>
+                    <td class="tdclass"><input type="radio" id="13_N" name="13" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="13_H" name="13" value="0.96,0.94,0.91,0.96"></td>
+                    <td class="tdclass"><input type="radio" id="13_VH" name="13" value="0.93,0.88,0.82,0.92"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Personnel Contunuity (PCON)</td>
+                    <td class="tdclass"><input type="radio" id="14_VL" name="14" value="1.22,1.25,1.30,1.21"></td>
+                    <td class="tdclass"><input type="radio" id="14_L" name="14" value="1.10,1.12,1.14,1.1"></td>
+                    <td class="tdclass"><input type="radio" id="14_N" name="14" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="14_H" name="14" value="0.91,0.89,0.88,0.91"></td>
+                    <td class="tdclass"><input type="radio" id="14_VH" name="14" value="0.82,0.80,0.77,0.82"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Project attributes</td>
+                    <td id="tdempty" colspan="6"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Use of Software Tools (TOOL)</td>
+                    <td class="tdclass"><input type="radio" id="15_VL" name="15" value="1.09,1.10,1.25,1.18"></td>
+                    <td class="tdclass"><input type="radio" id="15_L" name="15" value="1.04,1.05,1.12,1.09"></td>
+                    <td class="tdclass"><input type="radio" id="15_N" name="15" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="15_H" name="15" value="0.96,0.95,0.89,0.92"></td>
+                    <td class="tdclass"><input type="radio" id="15_VH" name="15" value="0.92,0.91,0.80,0.80"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Multisite Development (SITE)</td>
+                    <td class="tdclass"><input type="radio" id="16_VL" name="16" value="1.20,1.20,1.18,1.14"></td>
+                    <td class="tdclass"><input type="radio" id="16_L" name="16" value="1.10,1.10,1.09,1.07"></td>
+                    <td class="tdclass"><input type="radio" id="16_N" name="16" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="16_H" name="16" value="0.94,0.94,0.95,0.96"></td>
+                    <td class="tdclass"><input type="radio" id="16_VH" name="16" value="0.91,0.91,0.92,0.94"></td>
+                    <td class="tdclass"><input type="radio" id="16_EH" name="16" value="0.83,0.83,0.85,0.88"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Required Development Schedule (SCED)</td>
+                    <td class="tdclass"><input type="radio" id="17_VL" name="17" value="1.18,1.19,1.19,1.17"></td>
+                    <td class="tdclass"><input type="radio" id="17_L" name="17" value="1.09,1.09,1.09,1.08"></td>
+                    <td class="tdclass"><input type="radio" id="17_N" name="17" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="17_H" name="17" value="0.92,0.92,0.92,0.92"></td>
+                    <td class="tdclass"><input type="radio" id="17_VH" name="17" value="0.85,0.84,0.84,0.85"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Disciplined Methods (DISC)</td>
+                    <td class="tdclass"><input type="radio" id="18_VL" name="18" value="1.58,1.67,1.84,1.33"></td>
+                    <td class="tdclass"><input type="radio" id="18_L" name="18" value="1.26,1.29,1.36,1.15"></td>
+                    <td class="tdclass"><input type="radio" id="18_N" name="18" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="18_H" name="18" value="0.79,0.77,0.73,0.87"></td>
+                    <td class="tdclass"><input type="radio" id="18_VH" name="18" value="0.63,0.60,0.54,0.75"></td>
+                    <td class="tdclass" id="tdempty"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Precedentedness (PREC)</td>
+                    <td class="tdclass"><input type="radio" id="19_VL" name="19" value="1.43,1.34,1.24,1.20"></td>
+                    <td class="tdclass"><input type="radio" id="19_L" name="19" value="1.20,1.16,1.11,1.10"></td>
+                    <td class="tdclass"><input type="radio" id="19_N" name="19" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="19_H" name="19" value="0.70,0.91,0.93,0.94"></td>
+                    <td class="tdclass"><input type="radio" id="19_VH" name="19" value="0.89,0.87,0.9,0.91"></td>
+                    <td class="tdclass"><input type="radio" id="19_EH" name="19" value="0.84,0.75,0.81,0.83"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Architecture/Risk Resolution (RESL)</td>
+                    <td class="tdclass"><input type="radio" id="20_VL" name="20" value="1.32,1.43,1.41,1.26"></td>
+                    <td class="tdclass"><input type="radio" id="20_L" name="20" value="1.15,1.2,1.19,1.12"></td>
+                    <td class="tdclass"><input type="radio" id="20_N" name="20" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="20_H" name="20" value="0.91,0.89,0.89,0.92"></td>
+                    <td class="tdclass"><input type="radio" id="20_VH" name="20" value="0.87,0.84,0.84,0.89"></td>
+                    <td class="tdclass"><input type="radio" id="20_EH" name="20" value="0.76,0.70,0.71,0.79"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Team Cohesion (TEAM)</td>
+                    <td class="tdclass"><input type="radio" id="21_VL" name="21" value="1.34,1.26,1.18,1.17"></td>
+                    <td class="tdclass"><input type="radio" id="21_L" name="21" value="1.16,1.12,1.09,1.08"></td>
+                    <td class="tdclass"><input type="radio" id="21_N" name="21" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="21_H" name="21" value="0.91,0.93,0.95,0.95"></td>
+                    <td class="tdclass"><input type="radio" id="21_VH" name="21" value="0.87,0.9,0.92,0.93"></td>
+                    <td class="tdclass"><input type="radio" id="21_EH" name="21" value="0.75,0.80,0.85,0.86"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Process Maturity (PMAT)</td>
+                    <td class="tdclass"><input type="radio" id="22_VL" name="22" value="1.38,1.65,1.58,1.26"></td>
+                    <td class="tdclass"><input type="radio" id="22_L" name="22" value="1.17,1.28,1.26,1.12"></td>
+                    <td class="tdclass"><input type="radio" id="22_N" name="22" value="1,1,1,1" checked></td>
+                    <td class="tdclass"><input type="radio" id="22_H" name="22" value="0.90,0.85,0.86,0.92"></td>
+                    <td class="tdclass"><input type="radio" id="22_VH" name="22" value="0.85,0.78,0.79,0.89"></td>
+                    <td class="tdclass"><input type="radio" id="22_EH" name="22" value="0.73,0.61,0.63,0.79"></td>
+                </tr>
+
+                <tr>
+                    
+                </tr>
+            </table>
+            <div class="desc">
+                <i>VL </i> is very low, <i>L </i> is low, <i>N </i> is nominal, <i>H </i> is high, <i>VH </i> is very high, <i>EH </i> is extra high.
+            </div>
+            <br><br>
+           
+            
+            
+
+            <h2 style="color: blue;">Requirement Phase<h2>
+                <div>
+                    <button onclick="calQAF1()">Calculate QAF</button><br>
+                    QAF Value: <span id="QAF1"></span><br>
+                    A value:<input type="text" id="aReq"><br>
+                    B value:<input type="text" id="bReq"><br>
+                    <button onclick="calDIReq()">Calcurate DI</button><br>
+                    Defect Introduced (DI):<span id="DIR" > 0 </span><br>
+                </div>
+            <h2 style="color: blue;">Design Phase<h2>
+                <div>
+                    <button onclick="calQAF2()">Calculate QAF</button><br>
+                    QAF Value: <span id="QAF2"></span><br>
+                    A value:<input type="text" id="aDe"><br>
+                    B value:<input type="text" id="bDe"><br>
+                    <button onclick="calDIDe()">Calcurate DI</button><br>
+                    Defect Introduced (DI):<span id="DID" > 0 </span><br><br>
+                    
+                </div>   
+            <h2 style="color: blue;">Coding Phase<h2> 
+                <div>
+                    <button onclick="calQAF3()">Calculate QAF</button><br>
+                    QAF Value: <span id="QAF3"></span><br>
+                    A value:<input type="text" id="aCo"><br>
+                    B value:<input type="text" id="bCo"><br>
+                    <button onclick="calDICo()">Calcurate DI</button><br>
+                    Defect Introduced (DI):<span id="DICo" > 0 </span><br><br>
+                    
+                </div>
+                
+                <h2 style="color: blue;">Documentation Phase<h2> 
+                    <div>
+                        <button onclick="calQAF4()">Calculate QAF</button><br>
+                        QAF Value: <span id="QAF4"></span><br>
+                        A value:<input type="text" id="aDoc"><br>
+                        B value:<input type="text" id="bDoc"><br>
+                        <button onclick="calDIDo()">Calcurate DI</button><br>
+                        Defect Introduced (DI):<span id="DIDo" > 0 </span><br><br>
+                        
+                    </div>
+                
+                    <div>
+                        Total number: <span id="calTotalDI"></span><br>
+                        <button onclick="calTotal()">Calculate</button><br>
+                        
+                    </div>
+                </h2>    
+            <h1 style="color: red;"> Defect removal</h1>
+            <h2 style="color: blue;">Requirements defects</h2>
+
+            <table>
+                <tr>
+                    <td rowspan="2">Cost drivers</td>
+                    <td colspan="6" class="tdbigtitle">Ratings</td>
+                </tr>
+                <tr>
+                            <td class="tdclass">VL</td>
+                            <td class="tdclass">L</td>
+                            <td class="tdclass">N</td>
+                            <td class="tdclass">H</td>
+                            <td class="tdclass">VH</td>
+                            <td class="tdclass">EH</td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Calibration constant:</td>
+                    <td class="tdclass"colspan="6" ><input type="number" id="numRe"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Automated analysis DRF</td>
+                    <td class="tdclass"><input type="radio"  name="30" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="30" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="30" value="0.1" checked></td>
+                    <td class="tdclass"><input type="radio"  name="30" value="0.27"></td>
+                    <td class="tdclass"><input type="radio"  name="30" value="0.34"></td>
+                    <td class="tdclass"><input type="radio"  name="30" value="0.40"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">People reviews DRF</td>
+                    <td class="tdclass"><input type="radio"  name="40" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="40" value="0.25"></td>
+                    <td class="tdclass"><input type="radio"  name="40" value="0.4" checked></td>
+                    <td class="tdclass"><input type="radio"  name="40" value="0.5"></td>
+                    <td class="tdclass"><input type="radio"  name="40" value="0.58"></td>
+                    <td class="tdclass"><input type="radio"  name="40" value="0.70"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Execution tesing and tools DRF</td>
+                    <td class="tdclass"><input type="radio"  name="50" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="50" value="0.23"></td>
+                    <td class="tdclass"><input type="radio"  name="50" value="0.4" checked></td>
+                    <td class="tdclass"><input type="radio"  name="50" value="0.5"></td>
+                    <td class="tdclass"><input type="radio"  name="50" value="0.57"></td>
+                    <td class="tdclass"><input type="radio"  name="50" value="0.60"></td>
+                </tr>
+            </table>
+            <h2 style="color: blue;">Design defects</h2>
+
+            <table>
+                <tr>
+                    <td rowspan="2">Cost drivers</td>
+                    <td colspan="6" class="tdbigtitle">Ratings</td>
+                </tr>
+                <tr>
+                            <td class="tdclass">VL</td>
+                            <td class="tdclass">L</td>
+                            <td class="tdclass">N</td>
+                            <td class="tdclass">H</td>
+                            <td class="tdclass">VH</td>
+                            <td class="tdclass">EH</td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Calibration constant:</td>
+                    <td class="tdclass"colspan="6" ><input type="number" id="numDe"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Automated analysis DRF</td>
+                    <td class="tdclass"><input type="radio"  name="60" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="60" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="60" value="0.13" checked></td>
+                    <td class="tdclass"><input type="radio"  name="60" value="0.28"></td>
+                    <td class="tdclass"><input type="radio"  name="60" value="0.44"></td>
+                    <td class="tdclass"><input type="radio"  name="60" value="0.50"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">People reviews DRF</td>
+                    <td class="tdclass"><input type="radio"  name="70" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="70" value="0.28"></td>
+                    <td class="tdclass"><input type="radio"  name="70" value="0.4" checked></td>
+                    <td class="tdclass"><input type="radio"  name="70" value="0.54"></td>
+                    <td class="tdclass"><input type="radio"  name="70" value="0.70"></td>
+                    <td class="tdclass"><input type="radio"  name="70" value="0.78"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Execution tesing and tools DRF</td>
+                    <td class="tdclass"><input type="radio"  name="80" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="80" value="0.23"></td>
+                    <td class="tdclass"><input type="radio"  name="80" value="0.43" checked></td>
+                    <td class="tdclass"><input type="radio"  name="80" value="0.54"></td>
+                    <td class="tdclass"><input type="radio"  name="80" value="0.65"></td>
+                    <td class="tdclass"><input type="radio"  name="80" value="0.70"></td>
+                </tr>
+            </table>
+            <h2 style="color: blue;">Coding defects</h2>
+
+            <table>
+                <tr>
+                    <td rowspan="2">Cost drivers</td>
+                    <td colspan="6" class="tdbigtitle">Ratings</td>
+                </tr>
+                <tr>
+                            <td class="tdclass">VL</td>
+                            <td class="tdclass">L</td>
+                            <td class="tdclass">N</td>
+                            <td class="tdclass">H</td>
+                            <td class="tdclass">VH</td>
+                            <td class="tdclass">EH</td>
+                </tr>
+                <tr>
+                    <td class="tdbigtitle">Calibration constant:</td>
+                    <td class="tdclass"colspan="6" ><input type="number" id="numCo"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Automated analysis DRF</td>
+                    <td class="tdclass"><input type="radio"  name="90" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="90" value="0.1"></td>
+                    <td class="tdclass"><input type="radio"  name="90" value="0.20" checked></td>
+                    <td class="tdclass"><input type="radio"  name="90" value="0.30"></td>
+                    <td class="tdclass"><input type="radio"  name="90" value="0.48"></td>
+                    <td class="tdclass"><input type="radio"  name="90" value="0.55"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">People reviews DRF</td>
+                    <td class="tdclass"><input type="radio"  name="100" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="100" value="0.3"></td>
+                    <td class="tdclass"><input type="radio"  name="100" value="0.48" checked></td>
+                    <td class="tdclass"><input type="radio"  name="100" value="0.60"></td>
+                    <td class="tdclass"><input type="radio"  name="100" value="0.73"></td>
+                    <td class="tdclass"><input type="radio"  name="100" value="0.83"></td>
+                </tr>
+                <tr>
+                    <td class="tdtitle">Execution tesing and tools DRF</td>
+                    <td class="tdclass"><input type="radio"  name="110" value="0"></td>
+                    <td class="tdclass"><input type="radio"  name="110" value="0.38"></td>
+                    <td class="tdclass"><input type="radio"  name="110" value="0.58" checked></td>
+                    <td class="tdclass"><input type="radio"  name="110" value="0.69"></td>
+                    <td class="tdclass"><input type="radio"  name="110" value="0.78"></td>
+                    <td class="tdclass"><input type="radio"  name="110" value="0.88"></td>
+                </tr>
+
+                <tr>
+
+                </tr>
+            </table>
+            <div>
+                Total defect removal: <span id="DRE"></span><br>
+                <button onclick="calDRE()">Calculate DRE</button><br>
+                
+            </div>
+            
+           
+        </div>
+    </body>
+    <script>
+        function calQAF1(){
+            var x = 1;
+            var QAF = 1;
+            do{
+                var list = document.getElementsByName(x)
+                for(var i = 0; i < list.length; i++){
+                    if(list[i].checked){
+                        QAF = QAF  * list[i].value.split(",")[0];
+                    }
+                }
+                x++;
+            }while(x <= 22)
+
+            console.log(QAF) 
+            // var t = document.getElementById("numInput")
+
+            document.getElementById("QAF1").innerHTML = QAF
+        }
+        
+        function calQAF2(){
+            var x = 1;
+            var QAF = 1;
+            do{
+                var list = document.getElementsByName(x);
+                for(var i = 0; i < list.length; i++){
+                    if(list[i].checked){
+                        QAF = QAF  * list[i].value.split(",")[1];
+                    }
+                }
+                x++;
+            }while(x <= 22)
+
+            console.log(QAF) 
+            document.getElementById("QAF2").innerHTML = QAF
+        }
+        function calQAF3(){
+            var x = 1;
+            var QAF = 1;
+            do{
+                var list = document.getElementsByName(x);
+                for(var i = 0; i < list.length; i++){
+                    if(list[i].checked){
+                        QAF = QAF  * list[i].value.split(",")[2];
+                    }
+                }
+                x++;
+            }while(x <= 22)
+
+            console.log(QAF) 
+            document.getElementById("QAF3").innerHTML = QAF
+        }
+        function calQAF4(){
+            var x = 1;
+            var QAF = 1;
+            do{
+                var list = document.getElementsByName(x);
+                for(var i = 0; i < list.length; i++){
+                    if(list[i].checked){
+                        QAF = QAF  * list[i].value.split(",")[3];
+                    }
+                }
+                x++;
+            }while(x <= 22)
+
+            console.log(QAF) 
+            document.getElementById("QAF4").innerHTML = QAF
+        }
+        
+        function calDIReq(){
+            var QAF = document.getElementById("QAF1").innerHTML
+            var a = parseFloat(document.getElementById("aReq").value)
+            var b = parseFloat(document.getElementById("bReq").value)
+            var size = parseFloat(document.getElementById("numInput").value)
+            var DefectRe = Math.pow(size,b)*a*QAF
+            console.log(Math.pow(size,b))
+            console.log(a)
+            console.log(QAF)
+            console.log(DefectRe)
+            document.getElementById("DIR").innerHTML = DefectRe
+        }
+        function calDIDe(){
+            var QAF2 = document.getElementById("QAF2").innerHTML
+            var a = parseFloat(document.getElementById("aDe").value)
+            var b = parseFloat(document.getElementById("bDe").value)
+            var size = parseFloat(document.getElementById("numInput").value)
+            var DefectDe = Math.pow(size,b)*a*QAF2
+            console.log(Math.pow(size,b))
+            console.log(a)
+            console.log(QAF2)
+            console.log(DefectDe)
+            document.getElementById("DID").innerHTML = DefectDe
+        }
+        function calDICo(){
+            var QAF3 = document.getElementById("QAF3").innerHTML
+            var a = parseFloat(document.getElementById("aCo").value)
+            var b = parseFloat(document.getElementById("bCo").value)
+            var size = parseFloat(document.getElementById("numInput").value)
+            var DefectCo = Math.pow(size,b)*a*QAF3
+            console.log(Math.pow(size,b))
+            console.log(a)
+            console.log(QAF3)
+            console.log(DefectCo)
+            document.getElementById("DICo").innerHTML = DefectCo
+        }
+        function calDIDo(){
+            var QAF4 = document.getElementById("QAF4").innerHTML
+            var a = parseFloat(document.getElementById("aDoc").value)
+            var b = parseFloat(document.getElementById("bDoc").value)
+            var size = parseFloat(document.getElementById("numInput").value)
+            var DefectDoc = Math.pow(size,b)*a*QAF4
+            console.log(Math.pow(size,b))
+            console.log(a)
+            console.log(QAF4)
+            console.log(DefectDoc)
+            document.getElementById("DIDo").innerHTML = DefectDoc
+        }
+        function calTotal(){
+            var a = parseFloat(document.getElementById("DIR").innerHTML)
+            var b = parseFloat(document.getElementById("DID").innerHTML)
+            var c = parseFloat(document.getElementById("DICo").innerHTML)
+            var d = parseFloat(document.getElementById("DIDo").innerHTML)
+            
+            
+
+            var sum = a+b+c+d
+            console.log(sum)
+            document.getElementById("calTotalDI").innerHTML = sum
+        }
+        function calDRE(){
+            var dir = document.getElementById("DIR").innerHTML
+            var c1 = parseFloat(document.getElementById("numRe").value)
+            var result1 = 0
+            var x = 30;
+            var temp1 = 1;
+            do{
+                var list = document.getElementsByName(x);
+                for(var i = 0; i < list.length; i++){
+                    if(list[i].checked){
+                        temp1 = temp1  * (1-list[i].value)
+                    }
+                }
+                x+=10;
+            }while(x <= 50)
+            result1 = temp1*dir*c1
+
+            var x = 60;
+            var temp2 = 1;
+            var result2 = 0;
+            var did = document.getElementById("DID").innerHTML
+            var c2 = parseFloat(document.getElementById("numDe").value)
+            do{
+                var list = document.getElementsByName(x);
+                for(var i = 0; i < list.length; i++){
+                    if(list[i].checked){
+                        temp2 = temp2  * (1-list[i].value)
+                    }
+                }
+                x+=10;
+            }while(x <= 80)
+            result2 = temp2*did*c2
+
+            var x = 90;
+            var temp3 = 1;
+            var result3 = 0;
+            var dico = document.getElementById("DICo").innerHTML
+            var c3 = document.getElementById("numCo").value
+            do{
+                var list = document.getElementsByName(x);
+                for(var i = 0; i < list.length; i++){
+                    if(list[i].checked){
+                        temp3 = temp3  * (1-list[i].value)
+                    }
+                }
+                x+=10;
+            }while(x <= 110)
+            result3 = temp3*dico*c3
+            var final = result1+result2+result3
+            
+            document.getElementById("DRE").innerText =  final.toFixed(2)
+        }
+
+        
+    </script>
+</html> 
